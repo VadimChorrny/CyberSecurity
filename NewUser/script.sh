@@ -46,8 +46,7 @@ function createGroup() {
          %admin ALL=(ALL) ALL
          groupadd admin
         read -r -p "Enter user name: " user
-        read -r -p "Enter user password: " password
-         useradd $user -p $password
+         useradd $user 
     echo "user complate"
     read -r -p 'Do you wand make user adminom?' chocie
     if [[ $chocie == y || $chocie -eq yes ]]; then
