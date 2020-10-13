@@ -19,50 +19,50 @@ echo -e "..................................................."
 
 }
 function adduser_name(){
-    read -r -p "ENTER USER NAME " nameuser
+    read -r -p "|---===ENTER USER NAME===---| " nameuser
     sudo adduser $nameuser
 }
 function adduser_name_uid(){
-    read -r -p "ENTER USER NAME " nameuser
-    read -r -p "ENTER USER UID" uiduser
+    read -r -p "|---===ENTER USER NAME===---|" nameuser
+    read -r -p "|---===ENTER USER UID===---|" uiduser
     sudo useradd -u $uiduser $nameuser
 }
 function add_pass(){
-    read -r -p "ENTER USER NAME" nameuser
+    read -r -p "|---===ENTER USER NAME===---|" nameuser
     sudo passwd $nameuser
 }
 function del_user(){
-    read -r -p "ENTER USER NAME" nameuser
+    read -r -p "|---===ENTER USER NAME===---|" nameuser
     sudo userdel $nameuser
 }
 function editName(){
-    read -r -p "ENTER NEW USERNAME" newusername
-    read -r -p "ENTER OLD USERNAME" oldusername
+    read -r -p "|---===ENTER NEW USER NAME===---|" newusername
+    read -r -p "|---===ENTER OLD USER NAME===---|" oldusername
     sudo usermod -l $newusername $oldusername
 }
 function editId(){
-    read -r -p "ENTER NEW UID" newuid
+    read -r -p "|---===ENTER NEW USER ID===---|" newuid
     read -r -p "ENTER USERNAME" username
     sudo usermod -u $new_uid $username
 }
 function editGid(){
-    read -r -p "ENTER NEW UID" newgid
-    read -r -p "ENTER GROUPNAME" groupname
+    read -r -p "|---===ENTER NEW USER ID===---|" newgid
+    read -r -p "|---===ENTER GROUP NAME===---|" groupname
     sudo groupmod -g $newgid $groupname
 }
 function addGroup(){
-    read -r -p "ENTER GID" gid_
-    read -r -p "ENTER GROUPNAME" groupname
+    read -r -p "|---===ENTER GID===---|" gid_
+    read -r -p "|---===ENTER GROUP NAME===---|" groupname
     sudo addgroup --gid $gid_ $groupname
 }
 function adduserToGroup(){
-    read -r -p "ENTER GROUPNAME" groupname
-    read -r -p "ENTER USERNAME" username
+    read -r -p "|---===ENTER GROUPNAME NAME===---|" groupname
+    read -r -p "|---===ENTER USER NAME===---|" username
     sudo usermod -a -G $groupname $username
 }
 function deluserFromGroup(){
-    read -r -p "ENTER GROUPNAME" groupname
-    read -r -p "ENTER USERNAME" username
+    read -r -p "|---===ENTER GROUP NAME===---|" groupname
+    read -r -p "|---===ENTER USER NAME===---|" username
     sudo usermod -R $groupname $username
 }
 function showAllUsers(){
@@ -72,13 +72,13 @@ exit=false
 while [[ $exit != true ]]
 do
     printMenu;
-    read -r -p "ENTER YOUR ANSWER... " answer
+    read -r -p "<<| ENTER YOUR ANSWER |>>" answer
     case "$answer" in
     "0")
     exit=true
     ;;
     "1")
-    read -r -p "ENTER YOUR ANSWER... " answer1
+    read -r -p "" answer1
     if [[ "$answer1" == "a" ]]; then
     adduser_name;
     elif [[ "$answer1" == "b" ]]; then
@@ -93,7 +93,7 @@ do
     del_user;
     ;;
     "3")
-    read -r -p "ENTER YOUR ANSWER... " answer3
+    read -r -p "<<| ENTER YOUR ANSWER |>>" answer3
     if [[ "$answer3" == "a" ]]; then
     editName;
     elif [[ "$answer3" == "b" ]]; then
@@ -117,7 +117,7 @@ do
     showAllUsers;
     ;;
     *)
-    echo -e "INVALID ITEM"
+    echo -e "ERROR"
     exit 1
     ;;
     esac
